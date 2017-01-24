@@ -15,14 +15,17 @@
 # limitations under the License.
 #
 import webapp2
-from Caesar import encrypt,rotate_character, alphabet_position
+import Caesar
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
         mes="Hello world!"
-        encryptedmes=encrypt(mes,13)
-        self.response.write(encryptedmes)
+        encryptedmes=Caesar.encrypt(mes,13)
+        encryptbox="<textarea>"+ encryptedmes + "</textarea>"
+        button="<input Type='submit'/>"
+        form="<form>" + encryptbox + "<br>" + button + "</form>"
+        self.response.write(form)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
